@@ -40,12 +40,22 @@ const ChatBox = () => {
           </li>
         ))}
       </ul>
-      <div className={styles.inputBlock}>
+      {/* <div className={styles.inputBlock}>
         <input onChange={handleChange} value={inputMessage} type="text"></input>
         <Image src="/chat/plus.png" alt="plus-image" width={24} height={24} onClick={handleClickPlus}/>
       </div>
       {showQuickReply && <QuickReply />}
-      <button onClick={handleSendMessage}>Send Message</button>
+      <button onClick={handleSendMessage}>Send Message</button> */}
+      <div className={styles.inputBlock}>
+          <input
+            onChange={handleChange}
+            value={inputMessage}
+            type="text"
+          ></input>
+          <Image src="/chat/plus.png" alt="plus-image" width={24} height={24} onClick={handleClickPlus}/>
+          <Image src='/chat/send-message.png' alt="send-button" width={24} height={24} onClick={handleSendMessage}/>
+          {showQuickReply && <QuickReply />}
+      </div>
     </div>
   );
 };

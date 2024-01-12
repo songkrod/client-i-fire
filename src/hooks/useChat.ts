@@ -2,10 +2,11 @@
 
 import { useContext, useEffect, useState } from "react";
 import { SocketContext } from "@/contexts/SocketContext";
+import { MessageType } from "@/@types/message.interface";
 
 const useChat = () => {
   const { socket } = useContext(SocketContext);
-  const [chatMessages, setChatMessages] = useState<any[]>([]);
+  const [chatMessages, setChatMessages] = useState<MessageType[]>([]);
 
   const sendMessage = (message: string) => {
     if (message === "") {
@@ -13,11 +14,16 @@ const useChat = () => {
     }
 
     socket?.emit("chat:message", { message });
+
+    setChatMessages((prevState: MessageType[]) => [
+      ...prevState,
+      <MessageType>{ sender: "me", message },
+    ]);
   };
 
   useEffect(() => {
     if (socket) {
-      socket.on("chat:message", (payload: string) => {
+      socket.on("chat:message", (payload: MessageType) => {
         setChatMessages((prevState) => [...prevState, payload]);
       });
     }
