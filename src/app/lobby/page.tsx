@@ -7,6 +7,7 @@ import Logo from "@/components/Logo";
 import { useRouter } from "next/navigation";
 import useLobby from "@/hooks/useLobby";
 import Image from "next/image";
+import ChatBox from "@/components/ChatBox/ChatBox";
 
 export default function Page() {
   const navigator = useRouter();
@@ -96,6 +97,7 @@ export default function Page() {
           )}
         </div>
       </div>
+      <ChatBox />
     </div>
-  )
-};
+  );
+}
