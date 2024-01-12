@@ -1,0 +1,53 @@
+.hands {
+  left: 0px;
+  bottom: 0px;
+  width: 100vw;
+  position: fixed;
+  padding: 16px;
+  box-sizing: border-box;
+  transform: translateY(20%);
+}
+
+.cards {
+  width: 100%;
+  float: left;
+  text-align: center;
+}
+
+.card {
+  display: inline-block;
+  position: relative;
+  transition: all .2s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-10%);
+}
+
+.cardActive, .cardActive:hover {
+  transform: translateY(-30%);
+}
+
+.card > div {
+  zoom: 0.4;
+  margin-left: 6px;
+}
+
+.button {
+  width: 120px;
+  height: 120px;
+  top: 0px;
+  right: 20px;
+  position: absolute;
+  transform: translateY(-200%);
+}
+
+.button button {
+  width: inherit;
+  height: inherit;
+}
+
+.confirmed button, .confirmed button:hover {
+  cursor: not-allowed;
+  background-color: rgb(39, 192, 126);
+}

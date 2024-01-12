@@ -1,0 +1,43 @@
+.card {
+  width: 150px;
+  aspect-ratio: 0.8;
+  position: relative;
+  border-radius: 18px;
+  padding: 12px;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px;
+  background-color: #fff;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: inherit;
+  padding: 8px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  --s: 20px;
+  --_g: #0000 83%,#b09f79 85% 99%,#0000 101%;
+  background:
+    radial-gradient(27% 29% at right ,var(--_g)) calc(var(--s)/ 2) var(--s),
+    radial-gradient(27% 29% at left  ,var(--_g)) calc(var(--s)/-2) var(--s),
+    radial-gradient(29% 27% at top   ,var(--_g)) 0 calc(var(--s)/ 2),
+    radial-gradient(29% 27% at bottom,var(--_g)) 0 calc(var(--s)/-2)
+    #476074;
+  background-size: calc(2*var(--s)) calc(2*var(--s));
+}
+
+.logo {
+  width: 80%;
+  height: 80%;
+  position: relative;
+}

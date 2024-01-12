@@ -1,0 +1,31 @@
+.page {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: #e1dbd6;
+}
+
+.panel {
+  width: 100%;
+  max-width: 300px;
+  position: absolute;
+  border-radius: 18px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f6f2;
+  padding: 16px;
+
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+
+  top: 50%;
+  left: 50%;
+  margin: auto;
+  transform: translate(-50%, -50%);
+}
+
+.panel h3 {
+  font-size: 22px;
+  font-weight: bold;
+}
