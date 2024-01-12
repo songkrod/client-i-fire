@@ -1,8 +1,3 @@
-.box {
-    display: flex;
-    width: 50%;
-}
-
 div.inputBlock {
     border: solid 1px black;
     border-radius: 12px;
@@ -10,6 +5,7 @@ div.inputBlock {
     background-color: white;
     padding-right: 12px;
     align-items: center;
+    width: 50%;
 }
 
 div.inputBlock input {
@@ -20,4 +16,8 @@ div.inputBlock input {
 
 div.inputBlock img {
     cursor: pointer;
+}
+
+div.inputBlock button {
+    width: 50%;
 }
