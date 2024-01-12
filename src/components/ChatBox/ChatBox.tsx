@@ -1,5 +1,6 @@
 import useChat from "@/hooks/useChat";
-import { ChangeEventHandler, useEffect, useState } from "react";
+import { ChangeEventHandler, useState } from "react";
+import styles from "./ChatBox.module.css";
 
 type ChatBoxPropsType = {
   onSendMessage: Function;
@@ -31,8 +32,18 @@ const ChatBox = () => {
           </li>
         ))}
       </ul>
-      <input onChange={handleChange} value={inputMessage} type="text"></input>
-      <button onClick={handleSendMessage}>Send Message</button>
+      <div className={styles.box}>
+        <div>
+          <input
+            onChange={handleChange}
+            value={inputMessage}
+            type="text"
+          ></input>
+        </div>
+        <div className={styles.box}>
+          <button onClick={handleSendMessage}>Send Message</button>
+        </div>
+      </div>
     </div>
   );
 };
