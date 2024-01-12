@@ -5,7 +5,7 @@ div.inputBlock {
     background-color: white;
     padding-right: 12px;
     align-items: center;
-    width: 50%;
+    gap: 2px;
 }
 
 div.inputBlock input {
@@ -18,6 +18,27 @@ div.inputBlock img {
     cursor: pointer;
 }
 
-div.inputBlock button {
-    width: 50%;
+.chatBox {
+    border: solid 1px black;
+    border-radius: 12px;
+    padding: 8px 12px;
+    height: 150px;
+    overflow: scroll;
+    display: flex;
+}
+
+.chatBox li {
+    line-height: 24px;
+    font-size: 20px;
+}
+
+.chatBox .chat {
+    display: flex;
+    flex: 1;
+    overflow: scroll;
+}
+
+.chatBox .quickReply {
+    display: flex;
+    width: 40%;
 }

@@ -19,10 +19,10 @@ ul.wordList{
     border-radius: 20px;
     display: flex;
     flex-wrap: wrap;
-    min-height: 60px;
     align-items: center;
     padding: 8px 16px;
     position: relative;
-    overflow: hidden;
     background-color: lightgray;
+    overflow: scroll;
+    width: 100%;
 }
