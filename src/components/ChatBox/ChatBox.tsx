@@ -55,14 +55,14 @@ const ChatBox = () => {
   };
 
   return (
-    <div>
+    <div className={styles.chatBoxBg}>
       <div className={styles.chatBox}>
         <div className={styles.chat}>
+        <h2 className={styles.title}>Welcome to ChatBox</h2>
           <ul>
-            <li>Welcome to ChatBox</li>
             {chatMessages?.map((message, i) => (
               <li key={i}>
-                {message.sender}: {message.message}
+                {message.sender}:<div className={styles.message}>{message.message}</div>
               </li>
             ))}
             <div ref={messagesEndRef} />
