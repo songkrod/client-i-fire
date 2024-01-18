@@ -11,12 +11,11 @@ import Image from "next/image";
 import styles from "./ChatBox.module.css";
 
 type ChatBoxPropsType = {
-  onSendMessage: Function;
-  listMessages: string[];
+  lobbyId: string;
 };
 
-const ChatBox = () => {
-  const { chatMessages, sendMessage } = useChat();
+const ChatBox = ({ lobbyId }: ChatBoxPropsType) => {
+  const { chatMessages, sendMessage } = useChat(lobbyId);
   const [inputMessage, setInputMessage] = useState<string>("");
 
   const [showQuickReply, setShowQuickReply] = useState<boolean>(false);
@@ -55,7 +54,7 @@ const ChatBox = () => {
   };
 
   return (
-    <div>
+    <div className={styles.ChatBoxWarper}>
       <div className={styles.chatBox}>
         <div className={styles.chat}>
           <ul>

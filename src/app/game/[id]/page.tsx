@@ -18,6 +18,7 @@ import useRefEventListener from '@/hooks/useRefEventListener';
 import { MAX_STACK_ANIMATION_DURATION } from '@/constants/animate';
 import useGameAnimation from '@/hooks/useGameAnimation';
 import ScoreBoard from './_components/ScoreBoard';
+import ChatBox from '@/components/ChatBox';
 
 export default function Page({ params }: { params: { id: string } }) {
   const { socket } = useSocket();
@@ -289,6 +290,7 @@ export default function Page({ params }: { params: { id: string } }) {
       {playerScore.length > 0 && (
         <ScoreBoard playerScores={playerScore} />
       )}
+      <ChatBox lobbyId={params.id}/>
     </div>
   )
 }
