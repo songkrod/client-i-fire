@@ -39,7 +39,7 @@ export const SocketProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   const connect = () => {
-    const _socket = io('https://a475-49-229-126-173.ngrok-free.app');
+    const _socket = io('https://i-fire-server-uay0.onrender.com');
 
     setSocket(_socket);
   }
