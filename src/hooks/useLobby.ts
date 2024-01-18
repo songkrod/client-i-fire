@@ -3,34 +3,32 @@
 import { useContext, useEffect, useState } from "react";
 import { SocketContext } from "@/contexts/SocketContext";
 import { MemberReadyStateType, MemberType } from "@/@types/lobby.interface";
+import useSocket from "./useSocket";
 
 const useLobby = () => {
-  const { socket } = useContext(SocketContext);
+  const { socket } = useSocket();
   const [lobbyOwner, setLobbyOwner] = useState<MemberType | null>(null);
   const [members, setMembers] = useState<MemberType[]>([]);
   const [memberReadyStates, setMemberReadyStates] = useState<MemberReadyStateType>({});
 
-  const joinLobby = (name: string) => {
-    const user = { id: socket?.id, name };
-
-    socket?.emit('user:update', JSON.stringify(user));
-    socket?.emit('lobby:join');
+  const createLobby = () => {
+    socket?.emit('lobby:create');
   }
 
-  const leaveLobby = () => {
-    socket?.emit('lobby:leave');
+  const joinLobby = (id: string) => {
+    socket?.emit('lobby:join', JSON.stringify({ id }));
   }
 
-  const getLobbyInfo = () => {
-    socket?.emit('lobby:members:get');
+  const leaveLobby = (id: string) => {
+    socket?.emit('lobby:leave', JSON.stringify({ id }));
   }
 
-  const updateUserStatus = (state: boolean) => {
-    const status = { state: state };
+  const getLobbyInfo = (id: string) => {
+    socket?.emit('lobby:enter', JSON.stringify({ id }));
+  }
 
-    console.log('updateUserStatus', status);
-    
-    socket?.emit('lobby:ready', JSON.stringify(status));
+  const updateUserStatus = (id: string, state: boolean) => {
+    socket?.emit('lobby:ready', JSON.stringify({ id, state }));
   }
 
   useEffect(() => {
@@ -44,8 +42,6 @@ const useLobby = () => {
       socket.on('lobby:owner', (payload: string) => {
         const _owner = JSON.parse(payload) as MemberType;
 
-        console.log('_owner', _owner)
-
         setLobbyOwner(_owner);
       })
 
@@ -57,7 +53,7 @@ const useLobby = () => {
     }
   }, [socket]);
 
-  return { lobbyOwner, members, memberReadyStates, getLobbyInfo, joinLobby, leaveLobby, updateUserStatus }
+  return { lobbyOwner, members, memberReadyStates, createLobby, getLobbyInfo, joinLobby, leaveLobby, updateUserStatus }
 };
 
 export default useLobby;

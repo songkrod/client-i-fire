@@ -1,0 +1,51 @@
+.hands {
+  left: 0px;
+  bottom: 0px;
+  width: 100vw;
+  position: fixed;
+  padding: 16px;
+  box-sizing: border-box;
+  transform: translateY(20%);
+}
+
+.cards {
+  float: left;
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.cardWrapper {
+  display: inline-block;
+  position: relative;
+  margin-left: 6px;
+  transition: all .2s ease-out;
+}
+
+.cardWrapper:hover {
+  transform: translateY(-10%);
+}
+
+.cardActive, .cardActive:hover {
+  transform: translateY(-30%);
+}
+
+.cardWrapper.disableHover {
+  transform: none !important;
+  pointer-events: none;
+}
+
+.card {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.button {
+  top: -10px;
+  left: 0px;
+  right: 0px;
+  margin: 0 auto;
+  position: absolute;
+  transform: translateY(-100%);
+}

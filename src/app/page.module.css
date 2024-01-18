@@ -29,3 +29,11 @@
   font-size: 22px;
   font-weight: bold;
 }
+
+.or {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}

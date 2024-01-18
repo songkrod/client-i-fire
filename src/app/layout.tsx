@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
-import './globals.css'
+import { Toaster } from 'react-hot-toast'
 import { SocketProvider } from '@/contexts/SocketContext'
+
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'iFire',
@@ -17,6 +19,7 @@ export default function RootLayout({
       <body>
         <SocketProvider>
           {children}
+          <Toaster position='top-center' />
         </SocketProvider>
       </body>
     </html>

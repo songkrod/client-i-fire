@@ -1,0 +1,25 @@
+.wrapper {
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.text {
+  width: auto;
+  display: inline-block;
+  font-size: 50px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;
+}
+
+.text span {
+  color: var(--color-red);
+}

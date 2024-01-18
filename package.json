@@ -5,14 +5,17 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "prestart": "yarn build",
     "start": "next start",
-    "lint": "next lint",
-    "server": "node src/server"
+    "serve": "./ngrok http 3000",
+    "lint": "next lint"
   },
   "dependencies": {
+    "framer-motion": "^10.18.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
     "socket.io": "^4.7.3",
     "socket.io-client": "^4.7.3"
   },

@@ -1,0 +1,62 @@
+.stackWrapper {
+  top: 15%;
+  left: 0;
+  zoom: 0.8;
+  /* transform: perspective(800px) rotateX(20deg); */
+  margin: auto;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.freeze {
+  pointer-events: none;
+}
+
+.stacks {
+  display: flex;
+  gap: 8px;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.buyButton {
+  height: 100%;
+  left: -10px;
+  position: absolute;
+  transform: translateX(-100%);
+  pointer-events: all;
+}
+
+.buyButton button {
+  height: 100%;
+}
+
+.stack {
+  flex: 1 1;
+  display: flex;
+  gap: 8px;
+  position: relative;
+  pointer-events: none;
+}
+
+.slot {
+  height: 15vh;
+  aspect-ratio: 0.8;
+  border-radius: 16px;
+  position: relative;
+  border: 5px dashed rgba(255, 255, 255, 0.5);
+}
+
+.redLine {
+  border-color: rgb(190, 24, 24);
+}
+
+.slot > div {
+  width: 100%;
+}
