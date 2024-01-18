@@ -40,6 +40,11 @@ const ScoreBoard = forwardRef<HTMLDivElement, Props>(({ playerScores }, ref) => 
                   <Image alt='leader' src='/crown.svg' fill objectFit='contain' />
                 </div>
               )}
+              {index === sorted.length - 1 && (
+                <div className={styles.icon}>
+                  <Image alt='leader' src='/fire.svg' fill objectFit='contain' />
+                </div>
+              )}
               </div>
               <div className={`${styles.status} ${styles.unready}`}>
                 {playerScore.score}
