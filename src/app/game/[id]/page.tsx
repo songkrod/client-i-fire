@@ -190,8 +190,9 @@ export default function Page({ params }: { params: { id: string } }) {
   }
 
   const handleGameActivity = (message: string) => {
+    setIsFreeze(true);
     const activities = JSON.parse(message) as ActivityType[];
-    console.log('activities', activities);
+
     if (activities.length === 0) {
       socket?.emit('game:end:turn', JSON.stringify({ id: params.id }));
       return;
