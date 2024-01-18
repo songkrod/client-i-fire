@@ -5,7 +5,6 @@
   position: fixed;
   padding: 0px 20px;
   box-sizing: border-box;
-  transform: translateY(-50%);
   text-align: center;
 }
 
@@ -16,36 +15,33 @@
 }
 
 .card {
-  transform: rotate(180deg);
   position: relative;
 }
 
 .name {
   display: flex;
   gap: 4px;
-  margin-top: 10px;
+  margin-bottom: 6px;
   align-items: center;
   z-index: 2;
   justify-content: center;
+  align-items: center;
   position: relative;
+}
+
+.name span {
+  flex: 1;
+  height: 20px;
+  line-height: 24px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
 }
 
 .icon {
   width: 20px;
   height: 20px;
   position: relative;
-}
-
-.show .card {
-  transform: translateY(70%);
-  zoom: 1;
-  position: relative;
-}
-
-.show .name {
-  top: 50%;
-  left: 50%;
-  margin: 0;
-  position: absolute;
-  transform: translateX(-50%);
 }

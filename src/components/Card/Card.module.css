@@ -5,8 +5,9 @@
   border-radius: 18px;
   padding: 12px;
   box-sizing: border-box;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px;
   cursor: pointer;
+  user-select: none;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
 }
 
 .wrapper {

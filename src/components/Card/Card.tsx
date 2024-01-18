@@ -8,15 +8,15 @@ type CardPropsType = CardType & {
   zoom?: number;
 };
 
-const Card = ({no, buff, zoom}: CardPropsType) => {
+const Card = ({no, score, zoom}: CardPropsType) => {
   const cardColor = useMemo<string>(() => {
-    if (buff === 2) return styles.blue;
-    if (buff === 3) return styles.green;
-    if (buff === 5) return styles.red;
-    if (buff === 7) return styles.purple;
+    if (score === 2) return styles.blue;
+    if (score === 3) return styles.green;
+    if (score === 5) return styles.red;
+    if (score === 7) return styles.purple;
 
     return styles.gray;
-  }, [buff]);
+  }, [score]);
 
   const zoomLevel = useMemo<CSSProperties>(() => {
     if (zoom === undefined) return {};
@@ -32,7 +32,7 @@ const Card = ({no, buff, zoom}: CardPropsType) => {
             <Logo />
           </div>
           <span>x</span>
-          <b>{buff}</b>
+          <b>{score}</b>
         </div>
         <div className={styles.no}>{no}</div>
       </div>
