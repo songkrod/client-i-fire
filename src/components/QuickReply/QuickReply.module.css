@@ -1,0 +1,28 @@
+ul.wordList{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow: scroll;
+    line-height: 24px;
+}
+
+.wordList li{
+    padding: 0 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+.replyWarper{
+    border: solid 1px black;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px 16px;
+    position: relative;
+    background-color: lightgray;
+    overflow: scroll;
+    width: 100%;
+}

@@ -1,4 +1,44 @@
-.box {
-  display: flex;
-  width: 50%;
+div.inputBlock {
+    border: solid 1px black;
+    border-radius: 12px;
+    display: flex;
+    background-color: white;
+    padding-right: 12px;
+    align-items: center;
+    gap: 2px;
+}
+
+div.inputBlock input {
+    border: none;
+    border-radius: 12px;
+    flex: 1;
+}
+
+div.inputBlock img {
+    cursor: pointer;
+}
+
+.chatBox {
+    border: solid 1px black;
+    border-radius: 12px;
+    padding: 8px 12px;
+    height: 150px;
+    overflow: scroll;
+    display: flex;
+}
+
+.chatBox li {
+    line-height: 24px;
+    font-size: 20px;
+}
+
+.chatBox .chat {
+    display: flex;
+    flex: 1;
+    overflow: scroll;
+}
+
+.chatBox .quickReply {
+    display: flex;
+    width: 40%;
 }
