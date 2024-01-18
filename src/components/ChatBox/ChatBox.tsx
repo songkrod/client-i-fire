@@ -21,7 +21,7 @@ const ChatBox = () => {
 
   const [showQuickReply, setShowQuickReply] = useState<boolean>(false);
 
-  const messagesEndRef = useRef(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const { value } = event.target;
