@@ -21,6 +21,11 @@ export default function Page() {
       socket.on('lobby:join:success', handleLobbyJoined);
       socket.on('lobby:join:failed', handleLobbyJoinedError);
     }
+
+    () => {
+      socket?.off('lobby:join:success', handleLobbyJoined);
+      socket?.off('lobby:join:failed', handleLobbyJoinedError);
+    }
   }, [socket]);
 
   const handleLobbyJoined = (payload: string) => {

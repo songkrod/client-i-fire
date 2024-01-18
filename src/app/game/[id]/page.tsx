@@ -87,6 +87,31 @@ export default function Page({ params }: { params: { id: string } }) {
 
     return () => {
       leaveGame(params.id);
+
+      // commons
+      socket?.off('game:members:ready', handleAllPlayerReady);
+      socket?.off('game:join:failed', handleJoinGameFailed);
+      socket?.off('game:player:buy', handleWatingPlayerBuy);
+      socket?.off('game:activity', handleGameActivity);
+      socket?.off('game:start:turn', handleStartTurn);
+      socket?.off('game:result', handleGameResult);
+
+      // hands
+      socket?.off('game:hands', handlePlayerHands);
+
+      // stacks
+      socket?.off('game:stacks', handleUpdateStack);
+
+      // players
+      socket?.off('game:players', handlePlayersUpdate);
+      
+      // pick card
+      socket?.off('game:player:picked', handlePlayerPicked);
+      socket?.off('game:player:picked:result', handlePlayerPickedResult);
+
+      // buy
+      socket?.off('game:player:buyer', handleBuyer);
+      socket?.off('game:player:bought', handleBought);
     }
   }, []);
 

@@ -33,25 +33,35 @@ const useLobby = () => {
 
   useEffect(() => {
     if (socket) {
-      socket.on('lobby:members', (payload: string) => {
-        const _members = JSON.parse(payload) as MemberType[];
+      socket.on('lobby:members', handleUpdateMembers);
+      socket.on('lobby:owner', handleGetOwner);
+      socket.on('lobby:members:status', handleUpdateMemberStatus);
+    }
 
-        setMembers(_members);
-      })
-
-      socket.on('lobby:owner', (payload: string) => {
-        const _owner = JSON.parse(payload) as MemberType;
-
-        setLobbyOwner(_owner);
-      })
-
-      socket.on('lobby:members:status', (payload: string) => {
-        const _memberReadyStates = JSON.parse(payload) as MemberReadyStateType;
-
-        setMemberReadyStates(_memberReadyStates);
-      });
+    return () => {
+      socket?.off('lobby:members', handleUpdateMembers);
+      socket?.off('lobby:owner', handleGetOwner);
+      socket?.off('lobby:members:status', handleUpdateMemberStatus);
     }
   }, [socket]);
+
+  const handleUpdateMembers = (payload: string) => {
+    const _members = JSON.parse(payload) as MemberType[];
+
+    setMembers(_members);
+  }
+
+  const handleGetOwner = (payload: string) => {
+    const _owner = JSON.parse(payload) as MemberType;
+
+    setLobbyOwner(_owner);
+  }
+
+  const handleUpdateMemberStatus = (payload: string) => {
+    const _memberReadyStates = JSON.parse(payload) as MemberReadyStateType;
+
+    setMemberReadyStates(_memberReadyStates);
+  }
 
   return { lobbyOwner, members, memberReadyStates, createLobby, getLobbyInfo, joinLobby, leaveLobby, updateUserStatus }
 };

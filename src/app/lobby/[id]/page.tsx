@@ -11,20 +11,22 @@ import Image from "next/image";
 export default function Page({ params }: { params: { id: string } }) {
   const navigator = useRouter();
   const { socket } = useSocket();
-  const { members, lobbyOwner, memberReadyStates, leaveLobby,  getLobbyInfo, updateUserStatus } = useLobby();
+  const { members, lobbyOwner, memberReadyStates, leaveLobby, getLobbyInfo, updateUserStatus } = useLobby();
   const [ready, setReady] = useState<boolean>(false);
 
   useEffect(() => {
     getLobbyInfo(params.id);
-
-    socket?.on('lobby:start:game', () => {
-      navigator.push(`/game/${params.id}`);
-    });
+    socket?.on('lobby:start:game', handleStartGame);
 
     return () => {
       leaveLobby(params.id);
+      socket?.off('lobby:start:game', handleStartGame);
     }
   }, []);
+
+  const handleStartGame = () => {
+    navigator.push(`/game/${params.id}`);
+  }
 
   const handleClickReady = () => {
     const nextState = !ready;

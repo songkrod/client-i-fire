@@ -23,11 +23,13 @@ const useChat = () => {
 
   useEffect(() => {
     if (socket) {
-      socket.on("chat:message", (payload: MessageType) => {
-        setChatMessages((prevState) => [...prevState, payload]);
-      });
+      socket.on("chat:message", handleReceiveMessage);
     }
   }, [socket]);
+
+  const handleReceiveMessage = (payload: MessageType) => {
+    setChatMessages((prevState) => [...prevState, payload]);
+  }
 
   return {
     chatMessages,
