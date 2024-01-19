@@ -46,12 +46,17 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
 
   const onChangQuickReply = (message: string) => {
     sendMessage(message);
+    handleCloseQuickReply();
+  };
+
+  const handleCloseQuickReply = () => {
+    setShowQuickReply(false);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.ChatBoxWarper}>
-        <div className={styles.chatBox}>
+        <div className={styles.chatBox} onClick={handleCloseQuickReply}>
           <div className={styles.chat}>
             <ul>
               <li>Welcome to ChatBox</li>
@@ -66,6 +71,7 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
         </div>
         <div className={styles.inputBlock}>
           <input
+            onFocus={handleCloseQuickReply}
             onChange={handleChange}
             value={inputMessage}
             type="text"
