@@ -290,7 +290,7 @@ export default function Page({ params }: { params: { id: string } }) {
       {playerScore.length > 0 && (
         <ScoreBoard playerScores={playerScore} />
       )}
-      <ChatBox lobbyId={params.id}/>
+      <ChatBox gameId={params.id}/>
     </div>
   )
 }
