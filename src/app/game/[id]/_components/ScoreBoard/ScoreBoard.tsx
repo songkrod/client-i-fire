@@ -2,19 +2,23 @@
 
 import { PlayerScoreType } from '@/@types/game.interface';
 import styles from './ScoreBoard.module.css';
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import useLobby from '@/hooks/useLobby';
+import useSocket from '@/hooks/useSocket';
+import { IdType } from '@/@types/lobby.interface';
+import toast from 'react-hot-toast';
 
 type Props = {
+  gameId: string;
   playerScores: PlayerScoreType[];
 }
 
-const ScoreBoard = forwardRef<HTMLDivElement, Props>(({ playerScores }, ref) => {
+const ScoreBoard = forwardRef<HTMLDivElement, Props>(({ gameId, playerScores }, ref) => {
   const navigator = useRouter();
-  const handleFinish = () => {
-    navigator.replace('/');
-  }
+  const { socket } = useSocket();
+  const { createLobby, joinLobby } = useLobby();
 
   const sorted = useMemo<PlayerScoreType[]>(() => {
     return playerScores.sort((a, b) => {
@@ -23,6 +27,53 @@ const ScoreBoard = forwardRef<HTMLDivElement, Props>(({ playerScores }, ref) => 
       return 0;
     })
   }, [playerScores]);
+
+  const isOwner = useMemo<boolean>(() => {
+    const owner = playerScores.find((player) => player.owner);
+
+    if (!owner) return false;
+
+    return socket?.id === owner.id;
+  }, [playerScores]);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on('lobby:created', handleLobbyCreated);
+      socket.on('lobby:join:success', handleLobbyJoined);
+      socket.on('lobby:join:failed', handleLobbyJoinedError);
+    }
+
+    return () => {
+      socket?.off('lobby:created', handleLobbyCreated);
+      socket?.off('lobby:join:success', handleLobbyJoined);
+      socket?.off('lobby:join:failed', handleLobbyJoinedError);
+    }
+  }, [socket]);
+
+  const handleLobbyJoined = (payload: string) => {
+    const { id } = JSON.parse(payload) as IdType;
+
+    navigator.push(`/lobby/${id}`);
+  }
+
+  const handleLobbyJoinedError = () => {
+    toast.error("ห้องเต็ม / ไม่เจอห้อง");
+    navigator.push('/');
+  }
+
+  const handleFinish = () => {
+    navigator.replace('/');
+  }
+
+  const handleCreateLobby = () => {
+    createLobby(gameId);
+  }
+
+  const handleLobbyCreated = (payload: string) => {
+    const { id } = JSON.parse(payload) as IdType;
+    
+    joinLobby(id);
+  }
 
   return (
     <div className={styles.page}>
@@ -56,6 +107,11 @@ const ScoreBoard = forwardRef<HTMLDivElement, Props>(({ playerScores }, ref) => 
           <button onClick={handleFinish}>
             ออก
           </button>
+          {isOwner && (
+            <button className={styles.startButton} onClick={handleCreateLobby}>
+              เล่นอีกรอบ
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -1,7 +1,6 @@
 'use client'
 
-import { useContext, useEffect, useState } from "react";
-import { SocketContext } from "@/contexts/SocketContext";
+import { useEffect, useState } from "react";
 import { MemberReadyStateType, MemberType } from "@/@types/lobby.interface";
 import useSocket from "./useSocket";
 
@@ -11,8 +10,10 @@ const useLobby = () => {
   const [members, setMembers] = useState<MemberType[]>([]);
   const [memberReadyStates, setMemberReadyStates] = useState<MemberReadyStateType>({});
 
-  const createLobby = () => {
-    socket?.emit('lobby:create');
+  const createLobby = (id?: string) => {
+    const payload = id ? JSON.stringify({id}) : undefined;
+
+    socket?.emit('lobby:create', payload);
   }
 
   const joinLobby = (id: string) => {

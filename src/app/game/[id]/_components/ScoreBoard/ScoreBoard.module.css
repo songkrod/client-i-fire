@@ -92,3 +92,11 @@
   height: 20px;
   position: relative;
 }
+
+.startButton {
+  background-color: rgb(77 192 110);
+}
+
+.startButton:hover {
+  background-color: rgb(54, 147, 80);
+}

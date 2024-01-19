@@ -22,6 +22,7 @@ export type PlayerJoinStateType = {
 
 export type PlayerScoreType = PlayerType & {
   score: number;
+  owner: boolean;
 }
 
 export type BuyerType = {
