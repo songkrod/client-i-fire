@@ -17,12 +17,12 @@ type ChatBoxPropsType = {
 };
 
 const ChatBox = ({ gameId }: ChatBoxPropsType) => {
-  const { chatMessages, sendMessage } = useChat(gameId);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { chatMessages, sendMessage } = useChat(messagesEndRef,gameId);
   const [inputMessage, setInputMessage] = useState<string>("");
 
   const [showQuickReply, setShowQuickReply] = useState<boolean>(false);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const { value } = event.target;
@@ -34,7 +34,6 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
     if (inputMessage) {
       sendMessage(inputMessage);
       setInputMessage("");
-      scrollToBottom();
     }
   };
 
@@ -48,11 +47,6 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
 
   const onChangQuickReply = (message: string) => {
     sendMessage(message);
-    scrollToBottom();
-  };
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -66,7 +60,7 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
                 {message.name}: {message.message}
               </li>
             ))}
-            <div ref={messagesEndRef} style={{ height:'20px' }}/>
+            <div ref={messagesEndRef} style={{ height:'5px' }}/>
           </ul>
         </div>
         {showQuickReply && (

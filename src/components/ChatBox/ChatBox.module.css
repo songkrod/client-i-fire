@@ -23,6 +23,7 @@ div.inputBlock input {
     height: 36px;
     background-color: transparent;
     color: #fafafa;
+    font-family: thonburi, sans-serif;
 }
 
 div.inputBlock img {
@@ -44,9 +45,9 @@ div.inputBlock img {
 .chatBox li {
     line-height: 24px;
     font-size: 20px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-shadow: rgba(0,0,0,0.3) 0px 0px 5px;
+    font-family: thonburi, sans-serif;
+    text-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px;
+    word-wrap: break-word;
 }
 
 .chatBox .chat {

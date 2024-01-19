@@ -1,7 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
-// import { SocketContext } from "@/contexts/SocketContext";
+import { RefObject, useEffect, useState } from "react";
 import { MessageType } from "@/@types/message.interface";
 import useSocket from "./useSocket";
 
@@ -10,7 +9,7 @@ type MessagePayloadType = {
   message: string;
 };
 
-const useChat = (gameId = "") => {
+const useChat = (ref: RefObject<HTMLDivElement>,gameId = "") => {
   // const { socket } = useContext(SocketContext);
   const { socket } = useSocket();
   const [chatMessages, setChatMessages] = useState<MessageType[]>([]);
@@ -22,6 +21,10 @@ const useChat = (gameId = "") => {
     }
   }, []);
 
+  useEffect(()=>{
+    scrollToBottom()
+  },[chatMessages])
+
   const sendMessage = (message: string) => {
     if (message === "") {
       return;
@@ -32,6 +35,10 @@ const useChat = (gameId = "") => {
       message: message,
     };
     socket?.emit("chat:send:message", JSON.stringify(messagePayload));
+  };
+
+  const scrollToBottom = () => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleReceiveMessage = (payload: string) => {
