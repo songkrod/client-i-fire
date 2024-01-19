@@ -18,11 +18,10 @@ type ChatBoxPropsType = {
 
 const ChatBox = ({ gameId }: ChatBoxPropsType) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { chatMessages, sendMessage } = useChat(messagesEndRef,gameId);
+  const { chatMessages, sendMessage } = useChat(messagesEndRef, gameId);
   const [inputMessage, setInputMessage] = useState<string>("");
 
   const [showQuickReply, setShowQuickReply] = useState<boolean>(false);
-
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const { value } = event.target;
@@ -50,40 +49,42 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
   };
 
   return (
-    <div className={styles.ChatBoxWarper}>
-      <div className={styles.chatBox}>
-        <div className={styles.chat}>
-          <ul>
-            <li>Welcome to ChatBox</li>
-            {chatMessages?.map((message, i) => (
-              <li key={i}>
-                {message.name}: {message.message}
-              </li>
-            ))}
-            <div ref={messagesEndRef} style={{ height:'5px' }}/>
-          </ul>
-        </div>
-        {showQuickReply && (
-          <div className={styles.quickReply}>
-            <QuickReply onSelect={onChangQuickReply} />
+    <div className={styles.container}>
+      <div className={styles.ChatBoxWarper}>
+        <div className={styles.chatBox}>
+          <div className={styles.chat}>
+            <ul>
+              <li>Welcome to ChatBox</li>
+              {chatMessages?.map((message, i) => (
+                <li key={i}>
+                  {message.name}: {message.message}
+                </li>
+              ))}
+              <div ref={messagesEndRef} style={{ height: "5px" }} />
+            </ul>
           </div>
-        )}
+        </div>
+        <div className={styles.inputBlock}>
+          <input
+            onChange={handleChange}
+            value={inputMessage}
+            type="text"
+            onKeyDown={handleKeyDown}
+          ></input>
+          <Image
+            src="/chat/chat.svg"
+            alt="plus-image"
+            width={24}
+            height={24}
+            onClick={handleClickPlus}
+          />
+        </div>
       </div>
-      <div className={styles.inputBlock}>
-        <input
-          onChange={handleChange}
-          value={inputMessage}
-          type="text"
-          onKeyDown={handleKeyDown}
-        ></input>
-        <Image
-          src="/chat/chat.svg"
-          alt="plus-image"
-          width={24}
-          height={24}
-          onClick={handleClickPlus}
-        />
-      </div>
+      {showQuickReply && (
+        <div className={styles.quickReply}>
+          <QuickReply onSelect={onChangQuickReply} />
+        </div>
+      )}
     </div>
   );
 };
