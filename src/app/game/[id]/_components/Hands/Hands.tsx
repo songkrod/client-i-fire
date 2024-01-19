@@ -11,9 +11,10 @@ import { useParams } from 'next/navigation';
 type Props = {
   hands: CardType[];
   disabled?: boolean;
+  onPicked?: () => void;
 }
 
-const Hands = forwardRef<HTMLDivElement, Props>(({ hands = [], disabled = false }, ref) => {
+const Hands = forwardRef<HTMLDivElement, Props>(({ hands = [], disabled = false, onPicked }, ref) => {
   const { socket } = useSocket();
   const params = useParams<{ id: string }>();
   const [selectedCard, setSelectedCard] = useState<CardType | null>(null);
@@ -37,6 +38,7 @@ const Hands = forwardRef<HTMLDivElement, Props>(({ hands = [], disabled = false 
     
     socket?.emit('game:player:pick', JSON.stringify({ id: params.id, cardNo: selectedCard?.no }));
     setSelectedCard(null);
+    onPicked?.();
   }
 
   return (
