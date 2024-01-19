@@ -1,8 +1,16 @@
+.ChatBoxWarper {
+    top: 20%;
+    position: absolute;
+    width: 25%;
+    left: 2%;
+}
+
 div.inputBlock {
-    border: solid 1px black;
-    border-radius: 12px;
+    border: solid 3px black;
+    border-radius: 0 0 12px 12px;
+    border-top: solid 1px black;
     display: flex;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.5);
     padding-right: 12px;
     align-items: center;
     gap: 2px;
@@ -12,6 +20,9 @@ div.inputBlock input {
     border: none;
     border-radius: 12px;
     flex: 1;
+    height: 36px;
+    background-color: transparent;
+    color: #fafafa;
 }
 
 div.inputBlock img {
@@ -19,8 +30,11 @@ div.inputBlock img {
 }
 
 .chatBox {
-    border: solid 1px black;
-    border-radius: 12px;
+    color: #fafafa;
+    border: solid 3px black;
+    border-bottom: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 12px 12px 0 0;
     padding: 8px 12px;
     height: 150px;
     overflow: scroll;
@@ -30,6 +44,9 @@ div.inputBlock img {
 .chatBox li {
     line-height: 24px;
     font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-shadow: rgba(0,0,0,0.3) 0px 0px 5px;
 }
 
 .chatBox .chat {
@@ -40,5 +57,5 @@ div.inputBlock img {
 
 .chatBox .quickReply {
     display: flex;
-    width: 40%;
+    width: 50%;
 }

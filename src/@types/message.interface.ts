@@ -1,4 +1,4 @@
 export type MessageType = {
-  sender: string;
+  name: string;
   message: string;
 };

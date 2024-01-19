@@ -1,35 +1,43 @@
 "use client";
 
 import { useContext, useEffect, useState } from "react";
-import { SocketContext } from "@/contexts/SocketContext";
+// import { SocketContext } from "@/contexts/SocketContext";
 import { MessageType } from "@/@types/message.interface";
+import useSocket from "./useSocket";
 
-const useChat = () => {
-  const { socket } = useContext(SocketContext);
+type MessagePayloadType = {
+  roomId: string;
+  message: string;
+};
+
+const useChat = (gameId = "") => {
+  // const { socket } = useContext(SocketContext);
+  const { socket } = useSocket();
   const [chatMessages, setChatMessages] = useState<MessageType[]>([]);
+
+  useEffect(() => {
+    socket?.on("chat:feed:message", handleReceiveMessage);
+    return () => {
+      socket?.off("chat:feed:message");
+    }
+  }, []);
 
   const sendMessage = (message: string) => {
     if (message === "") {
       return;
     }
 
-    socket?.emit("chat:message", { message });
-
-    setChatMessages((prevState: MessageType[]) => [
-      ...prevState,
-      <MessageType>{ sender: "me", message },
-    ]);
+    const messagePayload: MessagePayloadType = {
+      roomId: gameId,
+      message: message,
+    };
+    socket?.emit("chat:send:message", JSON.stringify(messagePayload));
   };
 
-  useEffect(() => {
-    if (socket) {
-      socket.on("chat:message", handleReceiveMessage);
-    }
-  }, [socket]);
-
-  const handleReceiveMessage = (payload: MessageType) => {
-    setChatMessages((prevState) => [...prevState, payload]);
-  }
+  const handleReceiveMessage = (payload: string) => {
+    const _payload = JSON.parse(payload) as MessageType
+    setChatMessages((prevState) => [...prevState, _payload]);
+  };
 
   return {
     chatMessages,
