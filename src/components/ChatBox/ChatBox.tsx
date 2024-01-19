@@ -45,8 +45,8 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
     setShowQuickReply((prevState) => !prevState);
   };
 
-  const onChangQuickReply = (message: string) => {
-    sendMessage(message);
+  const onChangQuickReply = (payload: string) => {
+    sendMessage(payload);
   };
 
   return (
