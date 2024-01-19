@@ -54,6 +54,7 @@ div.inputBlock img {
     display: flex;
     flex: 1;
     overflow: scroll;
+    user-select: none;
 }
 
 .chatBox .quickReply {
