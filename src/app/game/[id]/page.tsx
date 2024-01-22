@@ -126,14 +126,14 @@ export default function Page({ params }: { params: { id: string } }) {
     setPickedDetail({});
   }
 
-  const handlePlayerHands = (message: string) => {
-    const _cards = JSON.parse(message) as CardType[];
+  const handlePlayerHands = (payload: string) => {
+    const _cards = JSON.parse(payload) as CardType[];
 
     setHands(_cards);
   }
 
-  const handleUpdateStack = (message: string) => {
-    const _stacks = JSON.parse(message) as StacksType;
+  const handleUpdateStack = (payload: string) => {
+    const _stacks = JSON.parse(payload) as StacksType;
     
     setStacks(_stacks);
   }
@@ -143,9 +143,9 @@ export default function Page({ params }: { params: { id: string } }) {
     setIsBuyer(true);
   }
 
-  const handleBought = (message: string) => {
+  const handleBought = (payload: string) => {
     setIsFreeze(true);
-    const { stack: stackNo, stacks: updatedStacks, buyer } = JSON.parse(message) as BoughtType;
+    const { stack: stackNo, stacks: updatedStacks, buyer } = JSON.parse(payload) as BoughtType;
     setIsBuyer(false);
     setWaitingPlayerBuy(null);
 
@@ -184,18 +184,18 @@ export default function Page({ params }: { params: { id: string } }) {
     }
   });
 
-  const handlePlayerPicked = (message: string) => {
+  const handlePlayerPicked = (payload: string) => {
     const playerId = socket?.id || '';
-    const ids = JSON.parse(message) as string[];
+    const ids = JSON.parse(payload) as string[];
     const isPicked = ids.includes(playerId);
 
     setIsPlayerPicked(isPicked);
     setPlayersPicked(ids);
   }
 
-  const handlePlayerPickedResult = (message: string) => {
+  const handlePlayerPickedResult = (payload: string) => {
     const playerId = socket?.id || '';
-    const playerPicked = JSON.parse(message) as PlayerPickedType;
+    const playerPicked = JSON.parse(payload) as PlayerPickedType;
     
     setPickedDetail(playerPicked);
     setPickedPlayerCard(playerPicked[playerId] || null);
@@ -210,14 +210,14 @@ export default function Page({ params }: { params: { id: string } }) {
     navigator.push('/');
   }
 
-  const handleWatingPlayerBuy = (message: string) => {
-    const { buyer } = JSON.parse(message) as BuyerType;
+  const handleWatingPlayerBuy = (payload: string) => {
+    const { buyer } = JSON.parse(payload) as BuyerType;
     setWaitingPlayerBuy(buyer);
   }
 
-  const handleGameActivity = (message: string) => {
+  const handleGameActivity = (payload: string) => {
     setIsFreeze(true);
-    const activities = JSON.parse(message) as ActivityType[];
+    const activities = JSON.parse(payload) as ActivityType[];
 
     if (activities.length === 0) {
       socket?.emit('game:end:turn', JSON.stringify({ id: params.id }));
@@ -258,15 +258,15 @@ export default function Page({ params }: { params: { id: string } }) {
     socket?.emit('game:end:turn', JSON.stringify({ id: params.id }));
   }
 
-  const handlePlayersUpdate = (message: string) => {
-    const _players = JSON.parse(message) as PlayerType[];
+  const handlePlayersUpdate = (payload: string) => {
+    const _players = JSON.parse(payload) as PlayerType[];
 
     setPlayers(_players);
   };
 
-  const handleGameResult = (message: string) => {
+  const handleGameResult = (payload: string) => {
     setIsFreeze(true);
-    const scores = JSON.parse(message) as PlayerScoreType[];
+    const scores = JSON.parse(payload) as PlayerScoreType[];
     setPlayerScore(scores);
   }
 
@@ -290,11 +290,11 @@ export default function Page({ params }: { params: { id: string } }) {
       )}
       {isFreeze && (
         <div className={styles.blocker} />
-      )}
-      {playerScore.length > 0 && (
-        <ScoreBoard playerScores={playerScore} />
-      )}
+        )}
       <ChatBox gameId={params.id}/>
+      {playerScore.length > 0 && (
+        <ScoreBoard gameId={params.id} playerScores={playerScore} />
+      )}
     </div>
   )
 }

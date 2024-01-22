@@ -1,19 +1,22 @@
 .container {
-    position: relative;
-    top: -25%;
-    min-height: 360px;
-    width: 50%;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    pointer-events: none;
 }
 
 .ChatBoxWarper {
     top: 0;
-    position: absolute;
-    width: 50%;
+    /* position: absolute; */
+    width: 25%;
     left: 2%;
-    height: 100%
+    height: 360px;
+    pointer-events: all;
 }
 
-div.inputBlock {
+.inputBlock {
     border: solid 3px black;
     border-radius: 0 0 12px 12px;
     border-top: solid 1px black;
@@ -24,7 +27,7 @@ div.inputBlock {
     gap: 2px;
 }
 
-div.inputBlock input {
+.inputBlock input {
     border: none;
     border-radius: 12px;
     flex: 1;
@@ -34,7 +37,7 @@ div.inputBlock input {
     font-family: thonburi, sans-serif;
 }
 
-div.inputBlock img {
+.inputBlock img {
     cursor: pointer;
 }
 

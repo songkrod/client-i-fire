@@ -2,7 +2,6 @@ import useChat from "@/hooks/useChat";
 import {
   ChangeEventHandler,
   KeyboardEventHandler,
-  useEffect,
   useRef,
   useState,
 } from "react";
@@ -10,17 +9,17 @@ import QuickReply from "../QuickReply";
 import Image from "next/image";
 
 import styles from "./ChatBox.module.css";
-import useSocket from "@/hooks/useSocket";
+import { motion } from "framer-motion";
 
 type ChatBoxPropsType = {
   gameId: string;
 };
 
 const ChatBox = ({ gameId }: ChatBoxPropsType) => {
+  const constraintsRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { chatMessages, sendMessage } = useChat(messagesEndRef, gameId);
   const [inputMessage, setInputMessage] = useState<string>("");
-
   const [showQuickReply, setShowQuickReply] = useState<boolean>(false);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -54,8 +53,8 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.ChatBoxWarper}>
+    <motion.div className={styles.container}  ref={constraintsRef}>
+      <motion.div className={styles.ChatBoxWarper} drag dragConstraints={constraintsRef}>
         <div className={styles.chatBox} onClick={handleCloseQuickReply}>
           <div className={styles.chat}>
             <ul>
@@ -85,13 +84,13 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
             onClick={handleClickPlus}
           />
         </div>
-      </div>
+      </motion.div>
       {showQuickReply && (
         <div className={styles.quickReply}>
           <QuickReply onSelect={onChangQuickReply} />
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

@@ -39,6 +39,7 @@ export const SocketProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   const connect = () => {
+    // const _socket = io('http://localhost:3001');
     const _socket = io('https://i-fire-server-uay0.onrender.com');
 
     setSocket(_socket);

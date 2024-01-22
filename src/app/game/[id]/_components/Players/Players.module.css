@@ -6,11 +6,14 @@
   padding: 0px 20px;
   box-sizing: border-box;
   text-align: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 10%;
+  justify-content: center;
 }
 
 .player {
-  display: inline-block;
-  position: relative;
+  padding: 5px;
   margin: 0px 4px;
 }
 
