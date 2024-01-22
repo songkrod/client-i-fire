@@ -53,8 +53,12 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
   };
 
   return (
-    <motion.div className={styles.container}  ref={constraintsRef}>
-      <motion.div className={styles.ChatBoxWarper} drag dragConstraints={constraintsRef}>
+    <motion.div className={styles.container} ref={constraintsRef}>
+      <motion.div
+        className={styles.ChatBoxWarper}
+        drag
+        dragConstraints={constraintsRef}
+      >
         <div className={styles.chatBox} onClick={handleCloseQuickReply}>
           <div className={styles.chat}>
             <ul>
@@ -84,12 +88,12 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
             onClick={handleClickPlus}
           />
         </div>
+        {showQuickReply && (
+          <div className={styles.quickReply}>
+            <QuickReply onSelect={onChangQuickReply} />
+          </div>
+        )}
       </motion.div>
-      {showQuickReply && (
-        <div className={styles.quickReply}>
-          <QuickReply onSelect={onChangQuickReply} />
-        </div>
-      )}
     </motion.div>
   );
 };

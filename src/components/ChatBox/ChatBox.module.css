@@ -8,12 +8,10 @@
 }
 
 .ChatBoxWarper {
-    top: 0;
-    /* position: absolute; */
     width: 25%;
-    left: 2%;
     height: 360px;
     pointer-events: all;
+    position: relative;
 }
 
 .inputBlock {
@@ -71,9 +69,9 @@
 
 .quickReply {
     position: absolute;
-    right: 1%;
+    right: -60%;
     top: 0;
-    width: 40%;
+    width: 50%;
     border: solid 1px black;
     border-radius: 20px;
     background-color: lightgray;
