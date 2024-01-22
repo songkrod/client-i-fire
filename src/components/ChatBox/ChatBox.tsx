@@ -43,14 +43,23 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
     setShowQuickReply((prevState) => !prevState);
   };
 
-  const onChangQuickReply = (payload: string) => {
-    sendMessage(payload);
+  const onChangQuickReply = (message: string) => {
+    sendMessage(message);
+    handleCloseQuickReply();
+  };
+
+  const handleCloseQuickReply = () => {
+    setShowQuickReply(false);
   };
 
   return (
-    <motion.div className={styles.wrapper} ref={constraintsRef}>
-      <motion.div drag className={styles.ChatBoxWarper} dragConstraints={constraintsRef}>
-        <div className={styles.chatBox}>
+    <motion.div className={styles.container} ref={constraintsRef}>
+      <motion.div
+        className={styles.ChatBoxWarper}
+        drag
+        dragConstraints={constraintsRef}
+      >
+        <div className={styles.chatBox} onClick={handleCloseQuickReply}>
           <div className={styles.chat}>
             <ul>
               <li>Welcome to ChatBox</li>
@@ -59,17 +68,13 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
                   {message.name}: {message.message}
                 </li>
               ))}
-              <div ref={messagesEndRef} style={{ height:'5px' }}/>
+              <div ref={messagesEndRef} style={{ height: "5px" }} />
             </ul>
           </div>
-          {showQuickReply && (
-            <div className={styles.quickReply}>
-              <QuickReply onSelect={onChangQuickReply} />
-            </div>
-          )}
         </div>
         <div className={styles.inputBlock}>
           <input
+            onFocus={handleCloseQuickReply}
             onChange={handleChange}
             value={inputMessage}
             type="text"
@@ -83,6 +88,11 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
             onClick={handleClickPlus}
           />
         </div>
+        {showQuickReply && (
+          <div className={styles.quickReply}>
+            <QuickReply onSelect={onChangQuickReply} />
+          </div>
+        )}
       </motion.div>
     </motion.div>
   );

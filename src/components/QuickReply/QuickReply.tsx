@@ -29,7 +29,6 @@ const QuickReply = ({ onSelect }: QuickReplyPropsType) => {
   };
 
   return (
-    <div className={styles.replyWarper}>
       <ul className={styles.wordList}>
         {insultWordList.map((word, index) => (
           <li key={index} onClick={() => handleSelect(word)}>
@@ -37,7 +36,6 @@ const QuickReply = ({ onSelect }: QuickReplyPropsType) => {
           </li>
         ))}
       </ul>
-    </div>
   );
 };
 
