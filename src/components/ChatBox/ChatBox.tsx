@@ -17,8 +17,8 @@ type ChatBoxPropsType = {
 
 const ChatBox = ({ gameId }: ChatBoxPropsType) => {
   const constraintsRef = useRef<HTMLDivElement>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { chatMessages, sendMessage } = useChat(messagesEndRef, gameId);
+  // const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { messageRef, chatMessages, sendMessage } = useChat(null, gameId);
   const [inputMessage, setInputMessage] = useState<string>("");
   const [showQuickReply, setShowQuickReply] = useState<boolean>(false);
 
@@ -68,7 +68,7 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
                   {message.name}: {message.message}
                 </li>
               ))}
-              <div ref={messagesEndRef} style={{ height: "5px" }} />
+              <div ref={messageRef} style={{ height: "5px" }} />
             </ul>
           </div>
         </div>
