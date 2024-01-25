@@ -277,7 +277,7 @@ export default function Page({ params }: { params: { id: string } }) {
   return (
     <div className={styles.page}>
       <Stacks ref={stacksRef} stacks={stacks} buyMode={isBuyer} />
-      <Players ref={playersRef} players={players} playersPicked={playersPicked} playerPickedCard={pickedDetail} />
+      <Players ref={playersRef} players={players} playersPicked={playersPicked} playerPickedCard={pickedDetail} gameId={params.id}/>
       <Hands ref={handsRef} hands={hands} onPicked={handlePickedCard} />
       {isPlayerPicked && (
         <PlayerSelected ref={playerSelectedRef} card={pickedPlayerCard} />

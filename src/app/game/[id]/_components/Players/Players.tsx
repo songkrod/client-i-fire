@@ -1,11 +1,13 @@
 import useSocket from '@/hooks/useSocket';
 import styles from './Players.module.css';
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, useEffect, useMemo, useState } from 'react';
 import { PlayerPickedType } from '@/@types/game.interface';
 import BackCard from '@/components/BackCard';
 import Image from 'next/image';
 import Card from '@/components/Card';
 import { PlayerType } from '@/@types/player.interface';
+import AnimateText from '@/components/AnimateText';
+import useChat from '@/hooks/useChat';
 
 const PENDING_ICON = '/clock.svg';
 const SELECTED_ICON = '/done.svg';
@@ -14,10 +16,12 @@ type Props = {
   players: PlayerType[];
   playersPicked: string[];
   playerPickedCard: PlayerPickedType;
+  gameId: string
 }
 
-const Players = forwardRef<HTMLDivElement, Props>(({ players, playersPicked, playerPickedCard}, ref) => {
+const Players = forwardRef<HTMLDivElement, Props>(({ players, playersPicked, playerPickedCard, gameId}, ref) => {
   const { socket } = useSocket();
+  const { animateText } = useChat(null,gameId)
 
   const cardZoomLevel = useMemo<number>(() => {
     return (0.3/702) * window.innerWidth;
@@ -46,6 +50,7 @@ const Players = forwardRef<HTMLDivElement, Props>(({ players, playersPicked, pla
               )}
             </div>
           )}
+          <AnimateText key={player.id} id={player.id} animateText={animateText}/>
       </div>
       ))}
     </div>
