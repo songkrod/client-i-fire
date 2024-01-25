@@ -8,7 +8,7 @@ type QuickReplyPropsType = {
   animateText: AnimateMessageType | null;
 };
 
-const animateTextDisplayTime = 3000 // in ms
+const animateTextDisplayTime = 3000; // in ms
 
 const AnimateText = ({ id, animateText }: QuickReplyPropsType) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -16,24 +16,25 @@ const AnimateText = ({ id, animateText }: QuickReplyPropsType) => {
   useEffect(() => {
     const willOpenAnimateText = () => {
       if (id !== animateText?.id) return;
-
+      
       setIsOpen(true);
     };
-
+    
+    setIsOpen(false);
     willOpenAnimateText();
   }, [animateText]);
 
-  useEffect(()=>{
+  useEffect(() => {
     const wilSetTimeOut = () => {
-      if(!isOpen) return
+      if (!isOpen) return;
 
       setTimeout(() => {
         setIsOpen(false);
       }, animateTextDisplayTime);
-    }
-    
-    wilSetTimeOut()
-  },[isOpen])
+    };
+
+    wilSetTimeOut();
+  }, [isOpen]);
 
   return (
     <>
