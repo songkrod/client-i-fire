@@ -37,10 +37,6 @@ const useChat = (ref: RefObject<HTMLDivElement> | null, gameId = "") => {
   useEffect(() => {
     socket?.on("chat:feed:message", handleReceiveMessage);
     socket?.on("chat:feed:message:animate", handleReceiveAnimateMessage);
-    return () => {
-      socket?.off("chat:feed:message");
-      socket?.off("chat:feed:message:animate");
-    };
   }, []);
 
   useEffect(() => {
@@ -58,8 +54,10 @@ const useChat = (ref: RefObject<HTMLDivElement> | null, gameId = "") => {
     };
 
     if (animateText) {
+      console.log('emit if',messagePayload)
       socket?.emit("chat:send:message:animate", JSON.stringify(messagePayload));
     } else {
+      console.log('emit else',messagePayload)
       socket?.emit("chat:send:message", JSON.stringify(messagePayload));
     }
   };
@@ -75,6 +73,7 @@ const useChat = (ref: RefObject<HTMLDivElement> | null, gameId = "") => {
 
   const handleReceiveAnimateMessage = (payload: string) => {
     const _payload = JSON.parse(payload) as AnimateMessageType;
+    console.log('return handleReceiveAnimateMessage',_payload)
     setAnimateText(_payload);
   };
 
