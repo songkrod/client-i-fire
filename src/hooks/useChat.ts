@@ -9,24 +9,7 @@ type MessagePayloadType = {
   message: string;
 };
 
-const insultWordsList: string[] = [
-  "เดี๋ยวเสี่ยซื้อเอง 💳",
-  "เหมา!!! 😘",
-  "ไอหนู พี่ลงก่อน",
-  "เสี่ยหำเหมารอบนี้",
-  "ผมอะ 💯% คราบน้องๆ",
-  "💯% หรอจ๋ะน้อง",
-  "ว้ายยยยย 🤪 ต๋ายแย้ววววว",
-  "อย่าลงการ์ดแบบนี้เวลางาน",
-  "น้ำขิงไหมคะ 😊",
-  "อย่าคิดนาน",
-  "อย่าคิดเยอะดิ",
-  "เดียวเราต้องคุยกัน",
-  "แทรกกู 😡",
-  "กูรอดโว้ย 🤪",
-];
-
-const useChat = (ref: RefObject<HTMLDivElement> | null, gameId = "") => {
+const useChat = (gameId = "") => {
   const { socket } = useSocket();
   const messageRef = useRef<HTMLDivElement>(null);
   const [chatMessages, setChatMessages] = useState<MessageType[]>([]);
@@ -62,7 +45,7 @@ const useChat = (ref: RefObject<HTMLDivElement> | null, gameId = "") => {
   };
 
   const scrollToBottom = () => {
-    ref?.current?.scrollIntoView({ behavior: "smooth" });
+    messageRef?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleReceiveMessage = (payload: string) => {
@@ -80,7 +63,6 @@ const useChat = (ref: RefObject<HTMLDivElement> | null, gameId = "") => {
     chatMessages,
     sendMessage,
     animateText,
-    insultWordsList
   };
 };
 

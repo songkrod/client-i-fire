@@ -12,7 +12,7 @@ type Props = {
   gameId: string
 }
 
-const Players = forwardRef<HTMLDivElement, Props>(({ players, playersPicked, playerPickedCard, gameId}, ref) => {
+const Players = forwardRef<HTMLDivElement, Props>(({ players, playersPicked, playerPickedCard}, ref) => {
   const { socket } = useSocket();
 
   const otherPlayers = useMemo<PlayerType[]>(() => {
@@ -22,7 +22,7 @@ const Players = forwardRef<HTMLDivElement, Props>(({ players, playersPicked, pla
   return (
     <div className={styles.players} ref={ref}>
       {otherPlayers.map((player) => (
-        <Player key={player.id} player={player} playerPicked={playersPicked} playerPickedCard={playerPickedCard} gameId={gameId} />
+        <Player key={player.id} player={player} isPlayerPicked={playersPicked.includes(player.id)} playerPickedCard={playerPickedCard[player.id]} />
       ))}
     </div>
   )
