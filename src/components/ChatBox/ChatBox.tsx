@@ -43,8 +43,8 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
     setShowQuickReply((prevState) => !prevState);
   };
 
-  const onChangQuickReply = (message: string) => {
-    sendMessage(message);
+  const onChangeQuickReply = (message: string) => {
+    sendMessage(message,true);
     handleCloseQuickReply();
   };
 
@@ -90,7 +90,7 @@ const ChatBox = ({ gameId }: ChatBoxPropsType) => {
         </div>
         {showQuickReply && (
           <div className={styles.quickReply}>
-            <QuickReply onSelect={onChangQuickReply} />
+            <QuickReply onSelect={onChangeQuickReply} />
           </div>
         )}
       </motion.div>
