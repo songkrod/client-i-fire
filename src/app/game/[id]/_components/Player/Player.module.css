@@ -15,6 +15,7 @@
 .player {
   padding: 5px;
   margin: 0px 4px;
+  min-height: 100px;
 }
 
 .card {
