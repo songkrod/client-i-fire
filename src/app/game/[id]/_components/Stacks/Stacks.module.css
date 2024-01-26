@@ -46,7 +46,7 @@
 }
 
 .slot {
-  height: 15vh;
+  height: 17vh;
   aspect-ratio: 0.8;
   border-radius: 16px;
   position: relative;
@@ -59,4 +59,5 @@
 
 .slot > div {
   width: 100%;
+  height: 100%;
 }

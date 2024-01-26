@@ -25,7 +25,7 @@ const Card = ({no, score, zoom}: CardPropsType) => {
   }, [zoom]);
 
   return (
-    <div className={`${styles.card} ${cardColor}`} style={zoomLevel}>
+    <div className={`${styles.card} ${cardColor}`} >
       <div className={styles.wrapper}>
         <div className={styles.score}>
           <div className={styles.buff}>

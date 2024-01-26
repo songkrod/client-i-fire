@@ -16,3 +16,7 @@
   position: absolute;
   pointer-events: all;
 }
+
+.visible > div{
+  height: 100%;
+}
