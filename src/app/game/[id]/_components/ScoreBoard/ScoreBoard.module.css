@@ -4,7 +4,7 @@
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background: rgba(0, 0, 0, 0.5);
+  background: #00000080;
 }
 
 .panel {
@@ -99,4 +99,11 @@
 
 .startButton:hover {
   background-color: rgb(54, 147, 80);
+}
+.disabledButton {
+  color: #ccc;
+  background-color: #eee;
+}
+.disabledButton:hover {
+  background-color: #eee;
 }

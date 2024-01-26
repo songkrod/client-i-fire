@@ -2,7 +2,7 @@
 
 import { PlayerScoreType } from '@/@types/game.interface';
 import styles from './ScoreBoard.module.css';
-import { forwardRef, useEffect, useMemo } from 'react';
+import { forwardRef, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import useLobby from '@/hooks/useLobby';
@@ -19,6 +19,7 @@ const ScoreBoard = forwardRef<HTMLDivElement, Props>(({ gameId, playerScores }, 
   const navigator = useRouter();
   const { socket } = useSocket();
   const { createLobby, joinLobby } = useLobby();
+ const [isContinue, setIsContinue] = useState<boolean>(false);
 
   const sorted = useMemo<PlayerScoreType[]>(() => {
     return playerScores.sort((a, b) => {
@@ -61,6 +62,10 @@ const ScoreBoard = forwardRef<HTMLDivElement, Props>(({ gameId, playerScores }, 
     navigator.push('/');
   }
 
+  const handleConfirm = () => {
+    setIsContinue(true);
+  }
+
   const handleFinish = () => {
     navigator.replace('/');
   }
@@ -74,6 +79,7 @@ const ScoreBoard = forwardRef<HTMLDivElement, Props>(({ gameId, playerScores }, 
     
     joinLobby(id);
   }
+console.log('ss', isContinue);
 
   return (
     <div className={styles.page}>
@@ -104,9 +110,14 @@ const ScoreBoard = forwardRef<HTMLDivElement, Props>(({ gameId, playerScores }, 
           ))}
         </div>
         <div className={styles.button}>
-          <button onClick={handleFinish}>
+          <button className={!isContinue ? '' :styles.disabledButton} disabled={isContinue} onClick={handleFinish}>
             ออก
           </button>
+          {!isOwner && (
+          <button className={!isContinue?styles.startButton : styles.disabledButton} onClick={handleConfirm}>
+            เล่นต่อ
+          </button>
+           )}
           {isOwner && (
             <button className={styles.startButton} onClick={handleCreateLobby}>
               เล่นอีกรอบ
