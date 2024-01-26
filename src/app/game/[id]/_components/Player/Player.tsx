@@ -55,8 +55,6 @@ const Player = ({ player, isPlayerPicked, playerPickedCard }: Props) => {
     return (0.3 / 702) * window.innerWidth;
   }, []);
 
-  console.log("param", params);
-
   return (
     <div className={styles.player} key={player.id}>
       <div className={styles.name}>
