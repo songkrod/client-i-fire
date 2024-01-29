@@ -49,3 +49,13 @@
   position: absolute;
   transform: translateY(-100%);
 }
+
+.showBackCard {
+  position: absolute;
+  right: 50px;
+  top: -38px;
+}
+
+.showBackCard img {
+  cursor: pointer;
+}

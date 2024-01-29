@@ -16,7 +16,7 @@ const BackCard = ({zoom}: BackCardPropsType) => {
   }, [zoom]);
 
   return (
-    <div className={styles.card} style={zoomLevel}>
+    <div className={styles.card}>
       <div className={styles.wrapper} />
     </div>
   )

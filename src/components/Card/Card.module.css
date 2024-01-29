@@ -5,8 +5,8 @@
   cursor: pointer;
   user-select: none;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 5px;
-  border: 0.6vw solid #717171;
-  width: 9vw;
+  border: 0.6vw solid currentColor;
+  width: 8vw;
 }
 
 .wrapper {
@@ -89,8 +89,8 @@
   justify-content: center;
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1200px) {
   .card {
-    width: 14vh;
+    height: 20vh;
   }
 }
