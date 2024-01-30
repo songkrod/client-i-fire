@@ -47,11 +47,11 @@ const Hands = forwardRef<HTMLDivElement, Props>(({ hands = [], disabled = false,
     setShowBackCard(!showBackCard);
   }
 
-  return (
-    <div className={styles.hands} ref={ref}>      
+  return (<>
       <div onClick={handleHiddenCard} className={styles.showBackCard} >
         <Image alt='eye' width={50} height={50} src={showBackCard? '/eye-solid.svg': '/eye-slash-solid.svg'} />
       </div>
+      <div className={styles.hands} ref={ref}>      
       <div className={styles.cards}>
         {hands.map((card) => (
           <div className={`${styles.cardWrapper} ${disabled ? styles.disableHover : ''} ${selectedCard && selectedCard.no === card.no ? styles.cardActive : ''}`} key={`card-${card.no}`} onClick={() => handleSelectCard(card)}>
@@ -66,7 +66,7 @@ const Hands = forwardRef<HTMLDivElement, Props>(({ hands = [], disabled = false,
         ))}
       </div>
     </div>
-  )
+  </>)
 })
 
 export default Hands;

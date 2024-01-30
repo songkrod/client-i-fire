@@ -53,7 +53,8 @@
 .showBackCard {
   position: absolute;
   right: 50px;
-  top: -38px;
+  bottom: 190px;
+  z-index: 1;
 }
 
 .showBackCard img {

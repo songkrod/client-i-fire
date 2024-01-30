@@ -42,9 +42,3 @@
   height: 80%;
   position: relative;
 }
-
-@media only screen and (min-width: 1200px) {
-  .card {
-    height: 20vh;
-  }
-}
