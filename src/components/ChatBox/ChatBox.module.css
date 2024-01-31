@@ -12,6 +12,7 @@
     height: 360px;
     pointer-events: all;
     position: relative;
+    display: none;
 }
 
 .inputBlock {
@@ -33,6 +34,7 @@
     background-color: transparent;
     color: #fafafa;
     font-family: thonburi, sans-serif;
+    display: none;
 }
 
 .inputBlock img {
@@ -78,4 +80,9 @@
     padding: 8px 16px;
     overflow: scroll;
     height: calc(100% - 16px);
+}
+@media only screen and (min-width: 992px) {
+    .ChatBoxWarper {
+        display: block;
+    }
 }

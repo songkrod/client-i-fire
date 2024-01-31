@@ -53,10 +53,12 @@
 .showBackCard {
   position: absolute;
   right: 50px;
-  bottom: 190px;
+  bottom: 12%;
   z-index: 1;
+  width: 35px;
 }
 
 .showBackCard img {
   cursor: pointer;
+  max-width: 100%;
 }
