@@ -8,8 +8,8 @@
 }
 
 .ChatBoxWarper {
-    width: 25%;
-    height: 360px;
+    width: 20%;
+    height: 300px;
     pointer-events: all;
     position: relative;
     display: none;
@@ -83,6 +83,9 @@
 }
 @media only screen and (min-width: 992px) {
     .ChatBoxWarper {
+        display: block;
+    }
+    .inputBlock input {
         display: block;
     }
 }
